@@ -1,4 +1,5 @@
 ﻿using Crayon.API.DB;
+using Crayon.API.Extensions;
 using System.Security.Claims;
 
 namespace Crayon.API.Services
@@ -9,9 +10,7 @@ namespace Crayon.API.Services
         {
             app.MapGet("/useraccounts", (ClaimsPrincipal user) =>
             {
-                var bearerId = user.Claims.First(x => x.Type == "jti").Value;
-
-                return DbMock.Accounts.Where(x => x.BearerId == bearerId).Select(x => x.Name);
+                return DbMock.Accounts.Where(x => x.BearerId == user.GetBearerId()).Select(x => x.Name);
             }).RequireAuthorization();
         }
     }

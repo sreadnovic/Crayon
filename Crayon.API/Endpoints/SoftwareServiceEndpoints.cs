@@ -1,4 +1,5 @@
 ﻿using Crayon.API.DB;
+using Crayon.API.Extensions;
 using System.Security.Claims;
 
 namespace Crayon.API.Endpoints
@@ -9,16 +10,12 @@ namespace Crayon.API.Endpoints
         {
             app.MapGet("/softwareservices", (ClaimsPrincipal user) =>
             {
-                var bearerId = user.Claims.First(x => x.Type == "jti").Value;
-
                 return DbMock.SoftwareServices.Select(x => x.Name);
             }).RequireAuthorization();
 
             app.MapPost("/cancelsoftware", (ClaimsPrincipal user, int serviceId) =>
             {
-                var bearerId = user.Claims.First(x => x.Type == "jti").Value;
-
-                DbMock.AccountServices.First(x => x.Account.BearerId == bearerId)
+                DbMock.AccountServices.First(x => x.Account.BearerId == user.GetBearerId())
                 .Licences.Where(x => x.SoftwareService.Id == serviceId)
                 .ToList()
                 .ForEach(x => x.Status = false);
