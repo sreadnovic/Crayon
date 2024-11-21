@@ -1,6 +1,7 @@
 using Crayon.API.DB;
 using Crayon.API.Endpoints;
 using Crayon.API.Services;
+using Crayon.API.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+
+builder.Services.AddSingleton<ImUserService>(new UserService());
+builder.Services.AddSingleton<ImSoftwareServiceService>(new SoftwareServiceService());
+builder.Services.AddSingleton<ImAccountSoftwareServiceService>(new AccountSoftwareServiceService());
 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using Crayon.API.DB;
 using Crayon.API.Extensions;
+using Crayon.API.Services.Contracts;
 using System.Security.Claims;
 
 namespace Crayon.API.Endpoints
@@ -8,17 +9,14 @@ namespace Crayon.API.Endpoints
     {
         public static void Register(WebApplication app)
         {
-            app.MapGet("/softwareservices", (ClaimsPrincipal user) =>
+            app.MapGet("/softwareservices", (ClaimsPrincipal user, ImSoftwareServiceService service) =>
             {
-                return DbMock.SoftwareServices.Select(x => x.Name);
+                return service.GetAllSoftwareServices(user).Select(x => x.Name);
             }).RequireAuthorization();
 
-            app.MapPost("/cancelsoftware", (ClaimsPrincipal user, int serviceId) =>
+            app.MapPost("/cancelsoftware", (ClaimsPrincipal user, ImSoftwareServiceService service, int serviceId) =>
             {
-                DbMock.AccountServices.First(x => x.Account.BearerId == user.GetBearerId())
-                .Licences.Where(x => x.SoftwareService.Id == serviceId)
-                .ToList()
-                .ForEach(x => x.Status = false);
+                service.CancelSoftwareSeervice(user, serviceId);
             }).RequireAuthorization();
 
         }

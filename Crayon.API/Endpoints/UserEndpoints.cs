@@ -1,5 +1,4 @@
-﻿using Crayon.API.DB;
-using Crayon.API.Extensions;
+﻿using Crayon.API.Services.Contracts;
 using System.Security.Claims;
 
 namespace Crayon.API.Services
@@ -8,9 +7,9 @@ namespace Crayon.API.Services
     {
         public static void Register(WebApplication app)
         {
-            app.MapGet("/useraccounts", (ClaimsPrincipal user) =>
+            app.MapGet("/useraccounts", (ClaimsPrincipal user, ImUserService userService) =>
             {
-                return DbMock.Accounts.Where(x => x.BearerId == user.GetBearerId()).Select(x => x.Name);
+                return userService.GetUserAccounts(user).Select(x => x.Name);
             }).RequireAuthorization();
         }
     }
