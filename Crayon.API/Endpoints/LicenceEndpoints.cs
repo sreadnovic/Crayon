@@ -9,7 +9,14 @@ namespace Crayon.API.Endpoints
         {
             app.MapPost("/ordersoftwarelicence", (ImAccountSoftwareServiceService service, ClaimsPrincipal user, int serviceId, DateTime validTo) =>
             {
-                service.OrderLicence(user, serviceId, validTo);
+                try
+                {
+                    service.OrderLicence(user, serviceId, validTo);
+                    return Results.Ok();
+                } catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             }).RequireAuthorization();
 
             app.MapGet("/getpurchasedlicences", (ImAccountSoftwareServiceService service, ClaimsPrincipal user) =>
@@ -19,7 +26,14 @@ namespace Crayon.API.Endpoints
 
             app.MapPost("/extendlicence", (ImAccountSoftwareServiceService service, ClaimsPrincipal user, int licenceId, DateTime validTo) =>
             {
-                service.ExtendLicence(user, licenceId, validTo);
+                try
+                {
+                    service.ExtendLicence(user, licenceId, validTo);
+                    return Results.Ok();
+                } catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             }).RequireAuthorization();
         }
     }

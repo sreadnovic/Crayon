@@ -10,10 +10,12 @@ namespace Crayon.API.Services
     {
         public void CancelSoftwareSeervice(ClaimsPrincipal user, int serviceId)
         {
-            DbMock.AccountServices.First(x => x.Account.BearerId == user.GetBearerId())
-                .Licences.Where(x => x.SoftwareService.Id == serviceId)
-                .ToList()
-                .ForEach(x => x.Status = false);
+            var softwareServices = DbMock.AccountServices.First(x => x.Account.BearerId == user.GetBearerId())
+                .Licences.Where(x => x.SoftwareService.Id == serviceId);
+
+            if (softwareServices is null || !softwareServices.Any()) throw new ArgumentException($"User does not use services with id {serviceId}");
+
+            softwareServices.ToList().ForEach(x => x.Status = false);
         }
 
         public List<SoftwareService> GetAllSoftwareServices(ClaimsPrincipal user)

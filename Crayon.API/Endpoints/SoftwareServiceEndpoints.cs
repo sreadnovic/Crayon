@@ -16,9 +16,17 @@ namespace Crayon.API.Endpoints
 
             app.MapPost("/cancelsoftware", (ClaimsPrincipal user, ImSoftwareServiceService service, int serviceId) =>
             {
-                service.CancelSoftwareSeervice(user, serviceId);
+                try
+                {
+                    service.CancelSoftwareSeervice(user, serviceId);
+                    return Results.Ok();
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
+                
             }).RequireAuthorization();
-
         }
     }
 }
