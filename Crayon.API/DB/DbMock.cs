@@ -7,7 +7,6 @@ namespace Crayon.API.DB
         public static List<Account> Accounts;
         public static List<AccountSoftwareService> AccountServices;
         public static List<SoftwareService> SoftwareServices;
-        public static List<SoftwareServiceLicence> SoftwareServiceInstances;
 
         public static void Seed()
         {
@@ -31,11 +30,6 @@ namespace Crayon.API.DB
             {
                 new AccountSoftwareService { Account = account1, Licences = new List<SoftwareServiceLicence> {licence1, licence3 } },
                 new AccountSoftwareService { Account = account2, Licences = new List<SoftwareServiceLicence> {licence2, licence4, licence5 } }
-            };
-
-            SoftwareServiceInstances = new List<SoftwareServiceLicence>
-            {
-                licence1, licence2, licence3, licence4, licence5
             };
         }
     }

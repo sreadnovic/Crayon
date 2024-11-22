@@ -14,7 +14,7 @@ namespace Crayon.API.Endpoints
 
             app.MapGet("/getpurchasedlicences", (ImAccountSoftwareServiceService service, ClaimsPrincipal user) =>
             {
-                service.GetPurchasedLicences(user);
+                return service.GetPurchasedLicences(user);
             }).RequireAuthorization();
 
             app.MapPost("/extendlicence", (ImAccountSoftwareServiceService service, ClaimsPrincipal user, int licenceId, DateTime validTo) =>
