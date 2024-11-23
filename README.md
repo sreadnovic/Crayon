@@ -1,6 +1,12 @@
 # Crayon
 
-SYSTEM DESIGN
+SYSTEM DESIGN TASK
+
+Technologies:
+Relational database to store the data (e.g. Azure SQL)
+Azure Functions to define the api calls.
+Azure Api Management to expose the apis which can be used by Crayon's web app for direct communication with customers or re-selleer to incorporate it in it's own system.
+Azure App Service to host the Web portal for the usage of direct customers. Web portal to be developed with any web development framework. 
 
 Create account
 ![image](https://github.com/user-attachments/assets/563ca670-febd-4095-8a81-a14ac781b5f8)
