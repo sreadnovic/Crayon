@@ -1,5 +1,11 @@
 # Crayon
 
+## TECHNICAL EXCERCISE TASK
+- It is stated in the task that the SQL is to be used, however for the purpose of coding excercise, I've used models and static data mock it. This I decided, since it would take too much to make sql server instance and the model it. My SQL experience is fair, since I used Microsoft SQL for significant part of my career, so I'm open for questions on that part of course.
+- On security subject, I've handled it with local jwt tokens created using dotnet user-jwts tool
+- ![image](https://github.com/user-attachments/assets/6645a8dc-faa1-4df8-a1c1-79b068c65800)
+
+
 ## SYSTEM DESIGN TASK
 
 ### Technologies:
