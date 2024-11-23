@@ -19,3 +19,6 @@ Get invoice info
 
 Download billing info
 ![image](https://github.com/user-attachments/assets/b8308484-bae4-47a4-a356-4aa9d4c02b0b)
+
+Submit support case
+![image](https://github.com/user-attachments/assets/063999d6-2387-44ac-86b5-c9bfd9fee22a)
