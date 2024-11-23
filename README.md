@@ -8,6 +8,11 @@ Azure Functions to define the api calls.
 Azure Api Management to expose the apis which can be used by Crayon's web app for direct communication with customers or re-selleer to incorporate it in it's own system.
 Azure App Service to host the Web portal for the usage of direct customers. Web portal to be developed with any web development framework. 
 
+Data Model
+![image](https://github.com/user-attachments/assets/e5dadf99-0c7f-4b75-8329-e4b5eb2584a1)
+
+Services
+
 Create account
 ![image](https://github.com/user-attachments/assets/563ca670-febd-4095-8a81-a14ac781b5f8)
 
